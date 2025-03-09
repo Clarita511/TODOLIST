@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gestion des etudiants</title>
+    <style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.form-group{
+    margin-bottom: 15px;
+}
+.container{
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0  0  10px rgba(red, green, blue, alpha);
+}
+h1{
+    text-align: center;
+    color:darksalmon;
+}
+form{
+    display: flex;
+    justify-content: space-between;
+}
+input{
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    width: 200px;
+}
+button{
+    padding: 10px;
+    background-color: cadetblue;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Gestion des etudiants</h1>
+        <a href="list.html"> aller a la liste</a>
+        <div class="form-group">
+            <input type="text" id="etudiant-nom" placeholder="nom"required></div>
+            <div class="form-group">
+            <input type="text" id="etudiant-prenom" placeholder="prenom" required></div>
+            <div class="form-group">
+            <input type="text" id="etudiant-niveau" placeholder="niveau" required></div>
+            <div class="form-group">
+            <input type="text" id="etudiant-parcours" placeholder="parcours" required></div>
+            <div class="form-group">
+            <button type="submit"> Ajouter </button></div>
+        <ul id="list-des-etudients"></ul>
+    </div>
+    <script src="index.js">
+        document.getElementById('etudiant-forme').addEventListener() 
+         {
+            e.preventDefault();
+            const studentName = document.getElementById('student-Name').value;
+            const student = { nom:studentName};
+            fetch('/.api/students',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify(student)
+            })
+            .then(response => response.json())
+            .then(data =>{addStudentTODOLIST2(data);
+            document.getElementById('student').value = '';});
+            };
+            function addStudentTODOLIST2(student){
+                const studentList = document.getElementById('student-list');
+                const li = document.createElement('li');
+                li.textContent = student.name;
+                studentList.appendChild(li);
+            }
+    </script>
+</body>
+</html>
